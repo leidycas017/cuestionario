@@ -44,7 +44,7 @@
                                   <input type="hidden" th:name="|questions[${i.index}].ans|" th:value="${ques.ans}" />
                                    -->
                                </div>
-
+                               <p class="text-danger warning" th:if="${warning}" th:text="${warning}"></p>
                                <button type="submit" class="btn btn-warning d-block mx-auto mt-4">Enviar</button>
                            </form>
                        </div>

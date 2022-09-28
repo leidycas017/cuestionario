@@ -51,12 +51,15 @@ public class QuizService {
         int moderado = 0;
         int arriesgado = 0;
         for(Question q : qForm.getQuestions()){
-            if(q.getChose() == 1)
+            if(q.getChose() == 1) {
                 conservador++;
-            if(q.getChose() == 2)
+            }else if(q.getChose() == 2) {
                 moderado++;
-            if(q.getChose() == 3)
+            }else if(q.getChose() == 3) {
                 arriesgado++;
+            }else{
+                return "NA";
+            }
         }
         if(arriesgado >= moderado && arriesgado >= conservador){
             return "Arriesgado";
