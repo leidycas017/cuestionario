@@ -36,7 +36,7 @@ public class MainController {
 
     @PostMapping("/quiz")
     public String quiz(@RequestParam String username, Model m, RedirectAttributes ra) {
-        if(username.equals("")) {
+        if(username != null && username.equals("")) {
             ra.addFlashAttribute("warning", "Debe ingresar su nombre para continuar");
             return "redirect:/";
         }
@@ -53,15 +53,15 @@ public class MainController {
     @PostMapping("/submit")
     public String submit(@ModelAttribute QuestionForm qForm, Model m, RedirectAttributes ra) {
 
-        if(!submitted) {
-                result.setPerfil(qService.getResult(qForm));
-                if(result.getPerfil() == "NA"){
-                    ra.addFlashAttribute("warning", "Hay preguntas sin responder, inténtalo nuevamente");
-                    return "redirect:/";
-                }else{
-                    qService.saveScore(result);
-                    submitted = true;
-                }
+        if(Boolean.TRUE.equals(!submitted)) {
+            result.setPerfil(qService.getResult(qForm));
+            if(result.getPerfil() != null && result.getPerfil().equals("NA")){
+                ra.addFlashAttribute("warning", "Hay preguntas sin responder, inténtalo nuevamente");
+                return "redirect:/";
+            }else{
+                qService.saveScore(result);
+                submitted = true;
+            }
         }
         return "result.html";
 

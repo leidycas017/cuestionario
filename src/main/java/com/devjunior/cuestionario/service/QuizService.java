@@ -31,7 +31,7 @@ public class QuizService {
 
     public QuestionForm getQuestions() {
         List<Question> allQues = qRepo.findAll();
-        List<Question> qList = new ArrayList<Question>();
+        List<Question> qList = new ArrayList<>();
 
         Random random = new Random();
 
